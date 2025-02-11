@@ -36,7 +36,8 @@ paths:
                     descricao:
                       type: string
   /especialidades/{id}:
-# Todas as outras operações além do GET teriam esse mesmo parâmetro, não sendo necessário declarar em cada verbo (get, put, ...)
+    # Compartilhando parametros entre operações
+    # Todas as outras operações além do GET teriam esse mesmo parâmetro, não sendo necessário declarar em cada verbo (get, put, ...)
     parameters: 
     - name: id
       in: path
