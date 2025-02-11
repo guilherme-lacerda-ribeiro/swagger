@@ -36,7 +36,7 @@ paths:
                     descricao:
                       type: string
   /especialidades/{id}:
-# Todas as outras operações além do GET teriam esse mesmo parâmetro, não sendo necessário documentar a cada operação
+# Todas as outras operações além do GET teriam esse mesmo parâmetro, não sendo necessário declarar em cada verbo (get, put, ...)
     parameters: 
     - name: id
       in: path
@@ -63,4 +63,8 @@ paths:
           description: Especialidade não encontrada
           content:
             application/json:
+              # Exemplo da resposta do servidor
+              # Poderia ser { "mensagem": "Not Found" } por exemplo
+              # Ou {}
+              # Ou mesmo "Não achou" como é o caso
               example: "Não achou"
