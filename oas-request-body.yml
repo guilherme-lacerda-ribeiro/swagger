@@ -35,17 +35,42 @@ paths:
                       type: integer
                     descricao:
                       type: string
+    post:
+      summary: Cadastrar uma nova especialidade
+      description: "Através deste endpoint você pode criar novas especialidades"
+      requestBody:
+        description: "No corpo envia a especialidade"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          description: "Sucesso"
+          # primeiro ele executou para descobrir qual é a resposta, pois não sabia de imediato
+          # então ele incluiu o content imediatamente após
+          # aproveitou também para validar que o http status code era 201 (e não 200 por exemplo)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  descricao:
+                    type: string
   /especialidades/{id}:
+    parameters: 
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
     get:
       summary: Recupera uma entidade pelo ID
-      parameters: 
-      - name: id
-        # Onde o parametro será enviado na requisição, se no path ou query string, etc.
-        # https://swagger.io/specification/v3/#parameter-locations
-        in: path
-        schema:
-          type: integer
-        required: true
       responses:
         200:
           description: Sucesso
@@ -65,11 +90,3 @@ paths:
           content:
             application/json:
               example: "Não achou"
-          
-# Query string se fosse especialidades?id=1
-  # /especialidades/:
-    # get:
-      # summary: Recupera uma entidade pelo ID
-      # parameters: 
-      # - name: id
-        # in: query
