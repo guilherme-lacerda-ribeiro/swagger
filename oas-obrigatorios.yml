@@ -1,0 +1,7 @@
+# Obrigatorios
+openapi: 3.0.1
+info:
+  title: API de consultório
+  description: API para controlar médicos e suas especialidades dentro do consultório.
+  version: 0.0.1
+  
