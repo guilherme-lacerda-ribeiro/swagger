@@ -24,3 +24,7 @@ Permite edição em JSON e YAML (\`iêmal\`).
 
 Os endpoints da API são chamados de _paths_.
 Os arquivos `yml` do projeto podem ser inseridos diretamente no editor do swagger online para teste.
+
+## Trechos destacados da documentação
+- [Data types](https://swagger.io/specification/#data-types)
+- [Components Examples](https://swagger.io/specification/#components-object-example)
