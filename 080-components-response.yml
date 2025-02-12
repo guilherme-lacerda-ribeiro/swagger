@@ -23,13 +23,7 @@ paths:
       summary: Recupera as especialidades
       responses:
         200:
-          description: Sucesso
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Especialidade'
+          $ref: '#/components/responses/SucessoArray'
     post:
       summary: Cadastrar uma nova especialidade
       description: "Através deste endpoint você pode criar novas especialidades"
@@ -44,11 +38,7 @@ paths:
                   type: string
       responses:
         201:
-          description: "Sucesso"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Especialidade'
+          $ref: '#/components/responses/Sucesso'
   /especialidades/{id}:
     parameters: 
     - name: id
@@ -60,18 +50,9 @@ paths:
       summary: Recupera uma entidade pelo ID
       responses:
         200:
-          description: Sucesso
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Especialidade'
+          $ref: '#/components/responses/SucessoArray'
         404:
-          description: Especialidade não encontrada
-          content:
-            application/json:
-              example: "Não achou"
+          $ref: '#/components/responses/NaoEncontrado'
     put:
       summary: Atualiza a descrição de uma entidade
       requestBody:
@@ -84,11 +65,7 @@ paths:
                   type: string
       responses:
         200:
-          description: Sucesso
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Especialidade'
+          $ref: '#/components/responses/Sucesso'
     delete:
       summary: Remove uma entidade
       responses:
@@ -108,6 +85,10 @@ components:
         descricao:
           type: string
           # format: date-time
+    Especialidades:
+      type: array
+      items:
+        $ref: '#/components/schemas/Especialidade'
     String:
       type: string
     Data:
@@ -122,10 +103,6 @@ components:
     NumeroComMaiorPrecisao:
       type: number
       format: decimal
-    Especialidades:
-      type: array
-      items:
-        $ref: '#/components/schemas/Especialidade'
     OutroArray:
       type: array
       items:
@@ -140,3 +117,25 @@ components:
             format: decimal
           ativo:
             type: boolean
+  responses:
+    Sucesso:
+      description: 'Sucesso'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Especialidade'
+    SucessoArray:
+      description: Sucesso
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Especialidade'
+    NaoEncontrado:
+      description: 'Requisição não encontrada.'
+      content:
+        application/json:
+          # A resposta do servidor é 'Not Found' então esse example deveria ser atualizado
+          # Está aqui diferente apenas para sinalizar que são coisas diferentes o example da response real
+          example: "Não achou"
