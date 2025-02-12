@@ -32,3 +32,26 @@ Os arquivos `yml` do projeto podem ser inseridos diretamente no editor do swagge
 ## Autenticação
 - [Youtube - Autenticação por Token](https://www.youtube.com/watch?v=MZetkcs2xIo)
 - [Youtube - Autenticação com JWT](https://www.youtube.com/watch?v=B-7e-ZpIWAs)
+
+## Offline Swagger Editor
+Pode baixar o projeto todo do github e subir como um servidor web. Ou pode subir via docke com a documentação no [próprio site](https://github.com/swagger-api/swagger-editor).
+```sh
+docker pull docker.swagger.io/swaggerapi/swagger-editor
+docker run -d -p 80:8080 docker.swagger.io/swaggerapi/swagger-editor
+(...)
+```
+Observação: por ser um projeto web, toda alteração que for realizada no arquivo precisa baixar novamente (file -> save) o arquivo yml que foi gerado.
+
+## Swagger UI
+Disponibilizar a documentação gerada ao cliente. Documentação no [próprio site](https://github.com/swagger-api/swagger-ui). Link direto pra [instalação em docker](https://github.com/swagger-api/swagger-ui/blob/HEAD/docs/usage/installation.md#docker).
+
+```sh
+# mapeia meu diretorio atual para o /tmp do servidor, ou seja, /tmp/openapi.json é meu diretório atual ./openapi.json
+docker run -p 80:8080 -e SWAGGER_JSON=/tmp/openapi.json -v $(pwd):/tmp docker.swagger.io/swaggerapi/swagger-ui
+
+# ou detached
+docker run -d -p 80:8080 -e SWAGGER_JSON=/tmp/openapi.json -v $(pwd):/tmp docker.swagger.io/swaggerapi/swagger-ui
+```
+
+## Generate server / client
+No editor é possível gerar o código através do menu próprio.
