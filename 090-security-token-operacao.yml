@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: API de consultório
+  description: API para controlar médicos e suas especialidades dentro do consultório.
+  version: 0.0.1
+  termsOfService: https://mockapi.io
+  contact: 
+    name: Suporte a Devs
+    email: contato@email.com
+    url: https://mockapi.io
+  license: 
+    name: "Licença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.pt-br.html
+externalDocs:
+  description: Documentação burocrática
+  url: https://mockapi.io
+servers:
+- url: https://6096015d116f3f00174b29ba.mockapi.io/
+  description: API de Teste
+paths:
+  /especialidades:
+    get:
+      summary: Recupera as especialidades
+      responses:
+        200:
+          $ref: '#/components/responses/SucessoArray'
+      security: 
+        # Pode ser qualquer nome
+        # É um objeto e o nome é a chave
+        # O valor é um array que só será utilizado se a autenticação for por OAuth (normalmente quando integra com serviços externos)
+        # Sendo autenticação por token, http, deixa o array vazio mesmo
+        - authCustomizadoQqNome: []
+    post:
+      summary: Cadastrar uma nova especialidade
+      description: "Através deste endpoint você pode criar novas especialidades"
+      requestBody:
+        description: "No corpo envia a especialidade"
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        201:
+          $ref: '#/components/responses/Sucesso'
+  /especialidades/{id}:
+    parameters: 
+    - name: id
+      in: path
+      schema:
+        type: integer
+      required: true
+    get:
+      summary: Recupera uma entidade pelo ID
+      responses:
+        200:
+          $ref: '#/components/responses/SucessoArray'
+        404:
+          $ref: '#/components/responses/NaoEncontrado'
+    put:
+      summary: Atualiza a descrição de uma entidade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+      responses:
+        200:
+          $ref: '#/components/responses/Sucesso'
+    delete:
+      summary: Remove uma entidade
+      responses:
+        200:
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Especialidade'
+components:
+  schemas:
+    Especialidade:
+      type: object
+      properties:
+        id:
+          type: integer
+        descricao:
+          type: string
+          # format: date-time
+    Especialidades:
+      type: array
+      items:
+        $ref: '#/components/schemas/Especialidade'
+    String:
+      type: string
+    Data:
+      type: string
+      format: date
+    DataHora:
+      type: string
+      format: date-time
+    Numero:
+      type: number
+      format: float
+    NumeroComMaiorPrecisao:
+      type: number
+      format: decimal
+    OutroArray:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          nome:
+            type: string
+          valor:
+            type: number
+            format: decimal
+          ativo:
+            type: boolean
+  responses:
+    Sucesso:
+      description: 'Sucesso'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Especialidade'
+    SucessoArray:
+      description: Sucesso
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Especialidade'
+    NaoEncontrado:
+      description: 'Requisição não encontrada.'
+      content:
+        application/json:
+          example: "Não achou"
+  securitySchemes:
+    authCustomizadoQqNome:
+      type: http
+      scheme: bearer

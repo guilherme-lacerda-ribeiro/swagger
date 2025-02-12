@@ -28,3 +28,7 @@ Os arquivos `yml` do projeto podem ser inseridos diretamente no editor do swagge
 ## Trechos destacados da documentação
 - [Data types](https://swagger.io/specification/#data-types)
 - [Components Examples](https://swagger.io/specification/#components-object-example)
+
+## Autenticação
+- [Youtube - Autenticação por Token](https://www.youtube.com/watch?v=MZetkcs2xIo)
+- [Youtube - Autenticação com JWT](https://www.youtube.com/watch?v=B-7e-ZpIWAs)
