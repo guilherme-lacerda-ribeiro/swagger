@@ -108,6 +108,38 @@ components:
         descricao:
           type: string
           # format: date-time
+    String:
+      type: string
+    Data:
+      type: string
+      format: date
+    DataHora:
+      type: string
+      format: date-time
+    Numero:
+      type: number
+      format: float
+    NumeroComMaiorPrecisao:
+      type: number
+      format: decimal
+    Especialidades:
+      type: array
+      items:
+        $ref: '#/components/schemas/Especialidade'
+    OutroArray:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          nome:
+            type: string
+          valor:
+            type: number
+            format: decimal
+          ativo:
+            type: boolean
   responses:
     Especialidade:
       description: 'Objeto Especialidade de resposta às requisições.'
